@@ -1,13 +1,16 @@
-import getSortHealth from '../app';
+import getHealthLevel from '../app';
 
-const heroStatus = [
-  { name: 'мечник', health: 10 },
-  { name: 'маг', health: 100 },
-  { name: 'лучник', health: 80 },
-];
+test('health check', () => {
+  const result = { name: 'Маг', health: 90 };
+  expect(getHealthLevel(result)).toBe('healthy');
+});
 
-test('Sorting characters by health level', () => {
-  const sortHeroHealth = heroStatus.sort(getSortHealth('health'));
+test('health check', () => {
+  const result = { name: 'Маг', health: 40 };
+  expect(getHealthLevel(result)).toBe('wounded');
+});
 
-  expect(sortHeroHealth).toEqual(heroStatus);
+test('health check', () => {
+  const result = { name: 'Маг', health: 5 };
+  expect(getHealthLevel(result)).toBe('critical');
 });
